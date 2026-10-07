@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niranjani. K | Portfolio - Computer Science Engineer</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        indigoAccent: {
+                            50: '#eep2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        },
+                        brandBlue: {
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom Scrollbar for Light Mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        /* Print styling for resume printable container */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-resume, #printable-resume * {
+                visibility: visible;
+            }
+            #printable-resume {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 20px;
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-800 transition-colors duration-300 font-sans selection:bg-indigoAccent-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 py-4 px-6 md:px-12 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#hero" class="text-2xl font-extrabold tracking-tight text-slate-900 hover:text-indigoAccent-600 transition-colors">
+                NIRANJANI<span class="text-indigoAccent-600">.K</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-indigoAccent-600 transition-colors">About</a>
+                <a href="#skills" class="hover:text-indigoAccent-600 transition-colors">Skills</a>
+                <a href="#education" class="hover:text-indigoAccent-600 transition-colors">Education</a>
+                <a href="#projects" class="hover:text-indigoAccent-600 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-indigoAccent-600 transition-colors">Contact</a>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-3">
+                <button onclick="openResumeModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigoAccent-600 hover:bg-indigoAccent-700 text-white text-xs font-semibold shadow-md shadow-indigoAccent-500/20 transition-all hover:scale-105 active:scale-95">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                    View Resume
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Toggle Mobile Menu" class="md:hidden p-2.5 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 px-6 py-6 transition-all duration-300 shadow-xl">
+            <div class="flex flex-col space-y-4 text-base font-medium text-slate-700">
+                <a href="#about" class="mobile-link hover:text-indigoAccent-600 py-1 transition-colors">About</a>
+                <a href="#skills" class="mobile-link hover:text-indigoAccent-600 py-1 transition-colors">Skills</a>
+                <a href="#education" class="mobile-link hover:text-indigoAccent-600 py-1 transition-colors">Education</a>
+                <a href="#projects" class="mobile-link hover:text-indigoAccent-600 py-1 transition-colors">Projects</a>
+                <a href="#contact" class="mobile-link hover:text-indigoAccent-600 py-1 transition-colors">Contact</a>
+                <button onclick="openResumeModal()" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-indigoAccent-600 text-white font-semibold text-sm shadow-md mt-2">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                    View Resume
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-32 pb-16 px-6 bg-gradient-to-b from-slate-50 via-white to-slate-50/50 overflow-hidden">
+        <!-- Soft Subtle Glowing Background Accents -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[34rem] h-[34rem] bg-indigoAccent-100/60 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-10 w-96 h-96 bg-blue-100/50 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
+                Hello, I'm <span class="bg-gradient-to-r from-indigoAccent-600 via-blue-600 to-sky-600 bg-clip-text text-transparent">NIRANJANI. K</span>
+            </h1>
+
+            <!-- Animated Typing Subtitle -->
+            <div class="text-xl sm:text-2xl md:text-3xl font-medium text-slate-700 mb-8 h-10 flex items-center justify-center">
+                <span id="typing-text" class="typing-cursor text-indigoAccent-600 font-semibold"></span>
+            </div>
+
+            <p class="text-base sm:text-lg text-slate-600 max-w-2xl mb-10 leading-relaxed font-normal">
+                I'm an engineering student who enjoys learning through challenges and turning ideas into practical solutions. With a curious mindset, adaptability, and problem-solving skills, I'm eager to take initiative and make a meaningful contribution during my internship at MSC.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <button onclick="openResumeModal()" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-indigoAccent-600 hover:bg-indigoAccent-700 text-white font-semibold transition-all shadow-xl shadow-indigoAccent-600/20 hover:scale-[1.03] active:scale-95">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    View Resume
+                </button>
+                <a href="#projects" class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-semibold transition-all hover:scale-[1.02] shadow-sm">
+                    Explore Projects
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-indigoAccent-600"></i>
+                </a>
+            </div>
+
+            <!-- Quick Info Bar -->
+            <div class="mt-14 pt-8 border-t border-slate-200 w-full max-w-2xl flex flex-wrap justify-center items-center gap-6 text-xs sm:text-sm text-slate-600 font-semibold">
+                <span class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-indigoAccent-600"></i> niranjani.0823@gmail.com</span>
+                <span class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-emerald-600"></i> +91 9025347430</span>
+                <span class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-sky-600"></i> Kanchipuram</span>
+                <span class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-indigo-600"></i> 8.13 CGPA</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 bg-slate-50/70 relative border-y border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                
+                <!-- Profile Card -->
+                <div class="md:col-span-5 flex justify-center">
+                    <div class="relative group w-full max-w-sm">
+                        <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl flex flex-col items-center text-center">
+                            <div class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-indigoAccent-600 via-blue-600 to-sky-500 flex items-center justify-center text-white text-4xl font-extrabold shadow-lg mb-6">
+                                NK
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-900">NIRANJANI. K</h3>
+                            <p class="text-xs text-indigoAccent-600 font-bold tracking-wider uppercase mt-1">B.E. CSE Student (Final Year)</p>
+                            
+                            <div class="w-full border-t border-slate-100 my-6"></div>
+
+                            <div class="w-full space-y-3 text-left text-xs text-slate-600">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">College:</span>
+                                    <span class="font-semibold text-slate-800">Adhi College of Engg.</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Degree:</span>
+                                    <span class="font-semibold text-slate-800">B.E. CSE (2023 - 2027)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-slate-400">Academic Score:</span>
+                                    <span class="font-bold text-emerald-600 text-sm">8.13 CGPA</span>
+                                </div>
+                            </div>
+
+                            <button onclick="openResumeModal()" class="w-full mt-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center gap-2 transition-colors border border-slate-200">
+                                <i data-lucide="eye" class="w-4 h-4 text-indigoAccent-600"></i> View Full Resume
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio Content -->
+                <div class="md:col-span-7 space-y-6">
+                    <div>
+                        <span class="text-indigoAccent-600 text-xs font-bold tracking-widest uppercase">About Me</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Driven by curiosity &amp; practical problem-solving</h2>
+                    </div>
+
+                    <p class="text-slate-600 leading-relaxed text-base sm:text-lg">
+                        I'm an engineering student who enjoys learning through challenges and turning ideas into practical solutions. With a curious mindset, adaptability, and problem-solving skills, I'm eager to take initiative and make a meaningful contribution during my internship at MSC.
+                    </p>
+
+                    <p class="text-slate-600 leading-relaxed text-base">
+                        My technical skillset encompasses modern frontend frameworks like <strong class="text-slate-900 font-semibold">React</strong>, backend execution with <strong class="text-slate-900 font-semibold">Node.js</strong>, relational databases with <strong class="text-slate-900 font-semibold">SQL</strong>, core programming in <strong class="text-slate-900 font-semibold">Python</strong>, and emerging <strong class="text-slate-900 font-semibold">AI Skills</strong>.
+                    </p>
+
+                    <!-- Key Pillars Grid -->
+                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-200">
+                        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                            <div class="text-2xl font-bold text-indigoAccent-600">8.13</div>
+                            <div class="text-xs text-slate-500 font-medium">CGPA (Final Year)</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                            <div class="text-xl sm:text-2xl font-bold text-sky-600">2023–2027</div>
+                            <div class="text-xs text-slate-500 font-medium">B.E. Computer Science</div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                            <div class="text-2xl font-bold text-indigo-600">80%</div>
+                            <div class="text-xs text-slate-500 font-medium">HSC Score (2023)</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 px-6 bg-white relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-indigoAccent-600 text-xs font-bold tracking-widest uppercase">Technical Profile</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Technical &amp; Soft Skills</h2>
+                <p class="text-slate-500 mt-3 text-sm">Competencies and tools utilized during academic projects and engineering coursework.</p>
+            </div>
+
+            <!-- Skills Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Frontend -->
+                <div class="p-6 rounded-2xl bg-slate-50/80 border border-slate-200 hover:border-indigoAccent-400 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-indigoAccent-100 flex items-center justify-center text-indigoAccent-600 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="layout" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Front-end Development</h3>
+                    <p class="text-xs text-slate-500 mb-4">Building dynamic user interfaces.</p>
+                    <div class="inline-flex items-center px-3 py-1.5 rounded-lg bg-indigoAccent-50 text-indigoAccent-700 border border-indigoAccent-200 text-xs font-bold">
+                        React
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="p-6 rounded-2xl bg-slate-50/80 border border-slate-200 hover:border-sky-400 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-sky-600 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="server" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Back-end Development</h3>
+                    <p class="text-xs text-slate-500 mb-4">Handling server logic and API routes.</p>
+                    <div class="inline-flex items-center px-3 py-1.5 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 text-xs font-bold">
+                        Node.js
+                    </div>
+                </div>
+
+                <!-- Programming & DB -->
+                <div class="p-6 rounded-2xl bg-slate-50/80 border border-slate-200 hover:border-blue-400 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="code" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Core Programming</h3>
+                    <p class="text-xs text-slate-500 mb-4">Problem solving and database queries.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold">Python</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold">SQL</span>
+                    </div>
+                </div>
+
+                <!-- AI Skills -->
+                <div class="p-6 rounded-2xl bg-slate-50/80 border border-slate-200 hover:border-violet-400 hover:shadow-lg transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center text-violet-600 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="cpu" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Emerging Tech</h3>
+                    <p class="text-xs text-slate-500 mb-4">Integrating modern artificial intelligence tools.</p>
+                    <div class="inline-flex items-center px-3 py-1.5 rounded-lg bg-violet-50 text-violet-700 border border-violet-200 text-xs font-bold">
+                        AI Skills
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="p-6 rounded-2xl bg-slate-50/80 border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition-all group md:col-span-2 lg:col-span-2">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Soft Skills</h3>
+                    <p class="text-xs text-slate-500 mb-4">Essential team and analytical capabilities.</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 rounded-xl bg-white text-emerald-800 border border-emerald-200 text-xs font-bold flex items-center gap-2 shadow-sm">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i> Problem Solving
+                        </span>
+                        <span class="px-4 py-2 rounded-xl bg-white text-emerald-800 border border-emerald-200 text-xs font-bold flex items-center gap-2 shadow-sm">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i> Group Collaboration
+                        </span>
+                        <span class="px-4 py-2 rounded-xl bg-white text-emerald-800 border border-emerald-200 text-xs font-bold flex items-center gap-2 shadow-sm">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i> Adaptability
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 px-6 bg-slate-50/70 border-y border-slate-200 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-indigoAccent-600 text-xs font-bold tracking-widest uppercase">Academic Background</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Education Timeline</h2>
+            </div>
+
+            <div class="relative border-l-2 border-slate-200 ml-4 md:ml-32 space-y-12">
+                
+                <!-- B.E CSE -->
+                <div class="relative pl-8 group">
+                    <div class="md:absolute md:-left-36 md:top-1 md:w-28 md:text-right text-xs font-bold text-indigoAccent-600 uppercase tracking-wider mb-2 md:mb-0">
+                        2023 - 2027
+                    </div>
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-white border-4 border-indigoAccent-600 group-hover:scale-125 transition-transform"></div>
+                    
+                    <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-md hover:shadow-xl transition-all">
+                        <span class="text-xs font-bold text-sky-600">Undergraduate Degree</span>
+                        <h3 class="text-xl font-bold text-slate-900 mt-1">B.E. Computer Science Engineering</h3>
+                        <p class="text-sm font-semibold text-slate-600 mt-1">Adhi College of Engineering and Technology, Kanchipuram</p>
+                        <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+                            <i data-lucide="award" class="w-4 h-4"></i> Final Year | CGPA: 8.13
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HSC -->
+                <div class="relative pl-8 group">
+                    <div class="md:absolute md:-left-36 md:top-1 md:w-28 md:text-right text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 md:mb-0">
+                        Completed 2023
+                    </div>
+                    <div class="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-white border-4 border-slate-400 group-hover:border-indigoAccent-600 transition-colors"></div>
+                    
+                    <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-md hover:shadow-xl transition-all">
+                        <span class="text-xs font-semibold text-slate-500">Higher Secondary Certificate (HSC)</span>
+                        <h3 class="text-xl font-bold text-slate-900 mt-1">State Board Examination</h3>
+                        <p class="text-sm font-semibold text-slate-600 mt-1">BMS Govt. Girls HSS, Kanchipuram</p>
+                        <div class="mt-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-indigoAccent-50 text-indigoAccent-700 border border-indigoAccent-200 text-xs font-bold">
+                            Percentage: 80%
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Projects Section -->
+    <section id="projects" class="py-24 px-6 bg-white relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-indigoAccent-600 text-xs font-bold tracking-widest uppercase">My Work</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Academic Project</h2>
+                <p class="text-slate-500 mt-3 text-sm">Key engineering project completed during coursework.</p>
+            </div>
+
+            <!-- Single Project Card -->
+            <div class="p-8 rounded-3xl bg-white border border-slate-200 shadow-lg hover:shadow-2xl transition-all group">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigoAccent-50 text-indigoAccent-700 border border-indigoAccent-200">Academic Project</span>
+                    <i data-lucide="folder-git-2" class="w-6 h-6 text-slate-400 group-hover:text-indigoAccent-600 transition-colors"></i>
+                </div>
+
+                <h3 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-indigoAccent-600 transition-colors">College Event Management</h3>
+                
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                    A centralized application built for organizing campus events, managing student registrations, tracking schedules, and handling participant databases efficiently.
+                </p>
+
+                <!-- Highlights List -->
+                <div class="space-y-3 mb-6 text-xs sm:text-sm text-slate-700 font-medium">
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i> Streamlined event registration and participation tracking.</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i> Integrated SQL database for participant record management.</div>
+                    <div class="flex items-center gap-3"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i> Logic implemented using Python and database management.</div>
+                </div>
+
+                <!-- Tech Badges -->
+                <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
+                    <span class="px-3 py-1 rounded-md text-xs font-semibold bg-slate-100 text-slate-700">Python</span>
+                    <span class="px-3 py-1 rounded-md text-xs font-semibold bg-slate-100 text-slate-700">SQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-slate-50/80 border-t border-slate-200 relative">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-indigoAccent-600 text-xs font-bold tracking-widest uppercase">Get In Touch</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2">Contact Details</h2>
+                <p class="text-slate-500 mt-3 text-sm">Feel free to reach out via email or mobile phone.</p>
+            </div>
+
+            <!-- Contact Information Cards Grid -->
+            <div class="grid sm:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-md text-center flex flex-col items-center hover:border-indigoAccent-500 transition-colors">
+                    <div class="p-3 rounded-xl bg-indigoAccent-50 text-indigoAccent-600 mb-4">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-xs text-slate-400 font-bold mb-1 uppercase tracking-wider">Mail Id</div>
+                    <a href="mailto:niranjani.0823@gmail.com" class="text-xs sm:text-sm font-bold text-slate-800 hover:text-indigoAccent-600 transition-colors break-all">niranjani.0823@gmail.com</a>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-md text-center flex flex-col items-center hover:border-emerald-500 transition-colors">
+                    <div class="p-3 rounded-xl bg-emerald-50 text-emerald-600 mb-4">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-xs text-slate-400 font-bold mb-1 uppercase tracking-wider">Mobile</div>
+                    <a href="tel:+919025347430" class="text-xs sm:text-sm font-bold text-slate-800 hover:text-emerald-600 transition-colors">+91 9025347430</a>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-md text-center flex flex-col items-center hover:border-sky-500 transition-colors">
+                    <div class="p-3 rounded-xl bg-sky-50 text-sky-600 mb-4">
+                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    </div>
+                    <div class="text-xs text-slate-400 font-bold mb-1 uppercase tracking-wider">Location</div>
+                    <div class="text-xs sm:text-sm font-bold text-slate-800">Kanchipuram, Tamil Nadu</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-6 bg-white border-t border-slate-200 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                © <span id="current-year"></span> NIRANJANI. K. All rights reserved.
+            </div>
+            <a href="#hero" class="hover:text-slate-800 transition-colors inline-flex items-center gap-1 font-medium">
+                Back to top <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Interactive Resume Modal -->
+    <div id="resume-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[90vh] flex flex-col">
+            
+            <!-- Modal Header / Controls -->
+            <div class="p-4 sm:px-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between gap-4 shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="p-2 rounded-lg bg-indigoAccent-100 text-indigoAccent-600">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">NIRANJANI. K — Official Resume</h3>
+                        <p class="text-xs text-slate-500">Bright clean resume preview</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button onclick="printResume()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-indigoAccent-600 hover:bg-indigoAccent-700 text-white text-xs font-semibold shadow-sm transition-colors">
+                        <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                        Print / Download
+                    </button>
+                    <button onclick="closeResumeModal()" class="p-2 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-200 transition-colors">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Printable Resume Content Area -->
+            <div class="p-6 sm:p-8 overflow-y-auto flex-1 bg-slate-100" id="printable-resume">
+                <div class="max-w-3xl mx-auto bg-white border border-slate-200 shadow-md rounded-xl p-6 sm:p-10 space-y-6 text-slate-800">
+                    
+                    <!-- Resume Title Header -->
+                    <div class="border-b-2 border-indigoAccent-600 pb-5">
+                        <h1 class="text-3xl font-extrabold text-slate-900 tracking-wide">NIRANJANI. K</h1>
+                        <div class="mt-3 flex flex-wrap gap-4 text-xs font-semibold text-slate-600">
+                            <span class="flex items-center gap-1"><strong class="text-slate-900">Mail:</strong> niranjani.0823@gmail.com</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1"><strong class="text-slate-900">Mobile:</strong> +91 9025347430</span>
+                            <span>•</span>
+                            <span class="flex items-center gap-1"><strong class="text-slate-900">Location:</strong> Kanchipuram</span>
+                        </div>
+                    </div>
+
+                    <!-- Resume Objective -->
+                    <div>
+                        <h2 class="text-xs font-bold text-indigoAccent-600 uppercase tracking-widest mb-2">Objective</h2>
+                        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            I'm an engineering student who enjoys learning through challenges and turning ideas into practical solutions. With a curious mindset, adaptability, and problem-solving skills, I'm eager to take initiative and make a meaningful contribution during my internship at MSC.
+                        </p>
+                    </div>
+
+                    <!-- Resume Education -->
+                    <div>
+                        <h2 class="text-xs font-bold text-indigoAccent-600 uppercase tracking-widest mb-3">Education</h2>
+                        <div class="space-y-4 text-xs sm:text-sm">
+                            <div class="border-l-2 border-indigoAccent-600 pl-4 py-0.5">
+                                <div class="flex justify-between items-baseline flex-wrap">
+                                    <h3 class="font-bold text-slate-900">B.E. Computer Science Engineering</h3>
+                                    <span class="text-xs text-indigoAccent-600 font-bold">2023 - 2027 (Final Year)</span>
+                                </div>
+                                <div class="text-xs text-slate-600 mt-1">Adhi College of Engineering and Technology, Kanchipuram</div>
+                                <div class="text-xs text-emerald-600 font-bold mt-1">CGPA: 8.13</div>
+                            </div>
+
+                            <div class="border-l-2 border-slate-300 pl-4 py-0.5">
+                                <div class="flex justify-between items-baseline flex-wrap">
+                                    <h3 class="font-bold text-slate-900">Higher Secondary Certificate (HSC)</h3>
+                                    <span class="text-xs text-slate-500">Completed in 2023</span>
+                                </div>
+                                <div class="text-xs text-slate-600 mt-1">BMS Govt. Girls HSS, Kanchipuram</div>
+                                <div class="text-xs text-indigoAccent-600 font-bold mt-1">Percentage: 80%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Technical Skills -->
+                    <div>
+                        <h2 class="text-xs font-bold text-indigoAccent-600 uppercase tracking-widest mb-3">Technical Skills</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                                <span class="font-bold text-slate-900">Front-end:</span> React
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                                <span class="font-bold text-slate-900">Back-end:</span> Node.js
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                                <span class="font-bold text-slate-900">Languages &amp; DB:</span> Python, SQL
+                            </div>
+                            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                                <span class="font-bold text-slate-900">Emerging Tech:</span> AI Skills
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Soft Skills -->
+                    <div>
+                        <h2 class="text-xs font-bold text-indigoAccent-600 uppercase tracking-widest mb-3">Soft Skills</h2>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 text-slate-700 font-medium">• Problem Solving</span>
+                            <span class="px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 text-slate-700 font-medium">• Group Collaboration</span>
+                            <span class="px-3 py-1.5 rounded-md bg-slate-50 border border-slate-200 text-slate-700 font-medium">• Adaptability</span>
+                        </div>
+                    </div>
+
+                    <!-- Resume Academic Projects -->
+                    <div>
+                        <h2 class="text-xs font-bold text-indigoAccent-600 uppercase tracking-widest mb-3">Academic Projects</h2>
+                        <div class="p-4 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                            <h3 class="font-bold text-slate-900">College Event Management</h3>
+                            <p class="text-xs text-slate-600 mt-1">Developed event scheduling and student record system using Python and SQL.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Logic Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Render Lucide Icons
+            lucide.createIcons();
+
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Typing Effect Logic
+            const phrases = [
+                "Computer Science Engineer",
+                "Front-end Developer (React)",
+                "Back-end Developer (Node.js)",
+                "Python & SQL Specialist",
+                "AI Skills Practitioner"
+            ];
+            let phraseIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 90;
+            const deletingSpeed = 50;
+            const pauseTime = 1800;
+            const typingElement = document.getElementById('typing-text');
+
+            function typeEffect() {
+                const currentPhrase = phrases[phraseIndex];
+                if (isDeleting) {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let nextTimeout = isDeleting ? deletingSpeed : typingSpeed;
+
+                if (!isDeleting && charIndex === currentPhrase.length) {
+                    nextTimeout = pauseTime;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    nextTimeout = 400;
+                }
+
+                setTimeout(typeEffect, nextTimeout);
+            }
+            typeEffect();
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('.mobile-link').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // Navbar Shadow on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('shadow-md');
+                } else {
+                    navbar.classList.remove('shadow-md');
+                }
+            });
+        });
+
+        // Resume Modal Handlers
+        function openResumeModal() {
+            document.getElementById('resume-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResumeModal() {
+            document.getElementById('resume-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function printResume() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
